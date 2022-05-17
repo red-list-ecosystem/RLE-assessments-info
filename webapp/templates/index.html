@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Summary{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<p>You are required to register to access the content of this site.</p>
+
+<div>
+  <ul>
+    <li> Assessments by country</li>
+    <ul>
+      <li><a href="{{ url_for('countries.country_list') }}">List of countries</a></li>
+    </ul>
+
+    <li> Assessments by protocol</li>
+    <ul>
+      <li>...</li>
+      <li>...</li>
+    </ul>
+  <li> Assessments by Ecosystem Functional Group</li>
+    <ul>
+      <li><a href="{{ url_for('typology.efg_list') }}">List of Ecosystem Functional Groups</a></li>
+      <li>...</li>
+    </ul>
+  </ul>
+</div>
+{% endblock %}

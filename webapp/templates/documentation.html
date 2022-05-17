@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block header %}
+<h1>{% block title %}Documentation{% endblock %}</h1>
+{% endblock %}
+
+
+{% block content %}
+
+<p>You can navigate this website from the <a href="{{url_for('summary')}}">Database summary page</a>.</p>
+
+<p>You are required to register to access the content of this site.</p>
+
+<p>Click on the buttons below to read documentation regarding the different topics of this site.</p>
+
+<button class='selecttab' onclick="openTab('Species')">Section 1</button>
+
+<div class="tabs" id="Species" style="">
+  <h2>Section title</h2>
+  <p>add tabs with documentation and more information</p>
+</div>
+
+{% endblock %}

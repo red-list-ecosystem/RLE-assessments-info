@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1 class='title'>{% block title %}
+    {{ info['name']}}
+    {% endblock %}</h1>
+{% endblock %}
+{% block content %}
+
+{% if info['description'] == None %}
+  <p>No description available in the database.</p>
+{% else %}
+  <p>{{ info['description']}}</p>
+{% endif %}
+
+<button class='selecttab' onclick="openTab('Summary')">Summary</button>
+<button class='selecttab' onclick="openTab('Spatial')">Spatial information</button>
+<button class='selecttab' onclick="openTab('Typology')">Ecosystem classification</button>
+<button class='selecttab' onclick="openTab('Entry')">Database entry</button>
+
+
+<div class="tabs" id="Summary" style="">
+
+  <h2>Status</h2>
+  <p>{{ info['status'] }}</p>
+
+  <h2>Reference</h2>
+  <p>This assessment is documented in the following reference:</p>
+<p>{{ info['ref_code'] }}</p>
+
+  <h2>Protocols</h2>
+  <p>This assessment applies the assessment protocol {{ info['assessment_protocol_code'] }}</p>
+  <p>This assessment uses the risk categories described in {{ info['risk_category_code'] }}</p>
+
+<h2>Assessment units</h2>
+{% if info['n_units'] == None %}
+  <p>There is no information about the number of assessment units in the database.</p>
+{% elif info['n_units'] == 1 %}
+  <p>This assessment is focused in a single assessment unit.</p>
+{% else %}
+  <p>Assessment units present in assessment reports/documents: {{ info['n_units'] }}</p>
+{% endif %}
+
+
+</div>
+
+<div class="tabs" id="Typology" style="">
+  <h2>IUCN Global Ecosystem Typology</h2>
+  {% if info['extent_layer'] == None %}
+    <p>There is no information about the spatial extent of the assessment in the database.</p>
+  {% else %}
+    <p>This assessment is included in {{ info['extent_layer'] }} extent layer.</p>
+  {% endif %}
+  {% if info['included_ecosystems'] == None %}
+    <p>There is no information about the spatial extent of the assessment in the database.</p>
+  {% else %}
+    <p>This assessment includes {{ info['included_ecosystems'] }}.</p>
+  {% endif %}
+</div>
+
+<div class="tabs" id="Spatial" style="">
+  <h2>Approximate extent</h2>
+  {% if info['area_km2'] == None %}
+    <p>There is no information about the spatial extent of the assessment in the database.</p>
+  {% else %}
+    <p>The assessment units cover an approximate extent of {{ info['area_km2'] }} km<sup>2</sup></p>
+  {% endif %}
+
+  <h2>Countries</h2>
+  {% if info['countries'] == None %}
+    <p>There is no information about countries.</p>
+  {% elif  info['countries']|length==1%}
+    <p>All assessment units have been assigned to one country or territory: {{info['countries'][0]}}.</p>
+
+  {% else %}
+    <p>The assessment units have been assigned to {{info['countries']|length}} countries or territories.</p>
+    {% for country in info['countries']%}
+    <span>{{country}}</span>
+    {% endfor %}
+  {% endif %}
+  <h2>Spatial data</h2>
+  <p>Spatial data is not included in this entry</p>
+
+</div>
+
+<div class="tabs" id="Entry" style="">
+  <h2>Entry in the database</h2>
+  <table>
+  {% for key in info.keys() %}
+      <tr>
+        <th>{{ key }}</th>
+        <td>{{ info[key] }}</td>
+      </tr>
+  {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

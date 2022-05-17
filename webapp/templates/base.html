@@ -1,0 +1,51 @@
+<!doctype html>
+<head>
+  <title>{% block title %}{% endblock %} - Global Ecosystems Database</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script rel="text/javascript" src="{{ url_for('static', filename='js/target.js') }}"> </script>
+</head>
+<body>
+
+<nav>
+  <h1 class='title'>Global Ecosystems Database</h1>
+  <h5>Version 0.1</h5>
+  <ul>
+    {% if g.user %}
+      <li><span>{{ g.user['username'] }}</span>
+      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+    {% else %}
+      <li><a href="{{ url_for('auth.register') }}">Register</a>
+      <li><a href="{{ url_for('auth.login') }}">Log In</a>
+    {% endif %}
+  </ul>
+</nav>
+
+<nav>
+  <ul>
+    <li><span><a href='{{ url_for('index') }}'>Home</a></span>
+      <li><span><a href='{{ url_for('summary') }}'>Database summary</a></span>
+    <li><span><a href='{{ url_for('documentation') }}'> Documentation</a></span>
+    <li><span><a href='{{ url_for('about') }}'>About</a></span>
+  </ul>
+</nav>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>
+<nav class='footer' >
+
+  <a href="https://www.unsw.edu.au/research/ecosystem" ><img src="{{ url_for('static', filename='images/ces-logo.png') }}" alt="Centre for Ecosystem Science" height=40px  class='logo' ></a>
+
+  <a href="https://www.unsw.edu.au/" ><img  class='logo' src="{{ url_for('static', filename='images/unsw-logo.png') }}" alt="UNSW" height=40px></a>
+
+  <h4 class='credits'>Design and development by:<br/>David A. Keith and Jos&eacute; R. Ferrer-Paris<br/>Centre for Ecosystem Science &mdash; University of New South Wales</h4>
+
+  <h4 class='credits'>Supported by: University of NSW </h4>
+
+</nav>
+</body>

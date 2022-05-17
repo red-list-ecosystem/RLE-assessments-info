@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>List of assessments for country ''{% block title %}{{ country.name }}{% endblock %}''</h1>
+{% endblock %}
+
+{% block content %}
+<table>
+  <tr>
+    <th rowspan='2'>Assessment</th>
+    <th rowspan='2'>Protocol and categories</th>
+    <th rowspan='2'>Reference</th>
+    <th colspan='8'>Units with information on assessment category</th>
+    <th rowspan='2'>Total</th>
+  </tr>
+  <tr>
+
+    {% for key in ('NE','DD','LC','NT','VU','EN','CR','CO') %}
+    <th>{{key}}</th>
+    {% endfor %}
+  </tr>
+  {% for item in info.keys() %}
+    <tr>
+      <td>
+        <a href="{{ url_for('assessments.info',id=item) }}">{{ info[item]['name'] }}</a>
+        </td>
+      <td>{{ info[item]['assessment_protocol_code'] }}
+      {{ info[item]['risk_category_code'] }}</td>
+      <td>{{ info[item]['ref_code'] }}</td>
+
+      {% for key in ('NE','DD','LC','NT','VU','EN','CR','CO','total') %}
+          <td>{{info[item][key]}}</td>
+      {% endfor %}
+    </tr>
+  {% endfor %}
+  <tr>
+    <th colspan=3>Totals</th>
+    {% for key in ('NE','DD','LC','NT','VU','EN','CR','CO','total') %}
+        <th>{{totals[key]}}</th>
+    {% endfor %}
+
+  </tr>
+</table>
+{% endblock %}

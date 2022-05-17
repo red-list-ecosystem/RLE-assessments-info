@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}
+    List of countries
+    {% endblock %}</h1>
+{% endblock %}
+{% block content %}
+
+    <p>List of assessments and assessment units per country</p>
+    <table>
+        <tr><th colspan='2'>Country</th><th>References</th><th>Assessment units</th></tr>
+    {% for item in info %}
+        <tr>
+          <td><a href="{{ url_for( 'countries.info', iso2=item['code']) }}">{{ item['code'] }}</a></td>
+          <td>{{ item['country'] }}</td>
+          <td>{{ item['assessments'] }}</td>
+          <td>{{ item['units'] }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}
