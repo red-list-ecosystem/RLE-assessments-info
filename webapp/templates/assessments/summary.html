@@ -1,0 +1,30 @@
+
+  <h2>Status</h2>
+  <p>{{ info['status'] }}</p>
+
+  <h2>Reference</h2>
+  <p>This assessment is documented in the following reference:</p>
+<p>{{ info['ref_code'] }}</p>
+
+  <h2>Protocols</h2>
+  <p>This assessment applies the assessment protocol {{ info['assessment_protocol_code'] }}</p>
+  <p>This assessment uses the risk categories described in {{ info['risk_category_code'] }}</p>
+
+<h2>Assessment units</h2>
+{% if info['n_units'] == None %}
+  <p>There is no information about the number of assessment units in the database.</p>
+{% elif info['n_units'] == 1 %}
+  <p>This assessment is focused in a single assessment unit.</p>
+{% else %}
+  <p>Assessment units present in assessment reports/documents: {{ info['n_units'] }}</p>
+  {% if cats|length > 0 %}
+  <table>
+    {% for key in cats.keys() %}
+    <tr>
+      <th>{{key}}</th><td class='{{key}}'>{{cats[key]}}</td>
+    </tr>
+  {%endfor%}
+
+  </table>
+  {% endif %}
+{% endif %}

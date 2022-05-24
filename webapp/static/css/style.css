@@ -1,19 +1,38 @@
-/* #242333, #FFFFFF, #01B0D3 */
+/* #242333, #FFFFFF, #344648 #7D8E95 */
 
-html { font-family: sans-serif; background: #FFFFFF; padding: 1rem; }
-body { max-width: 960px; margin: 0 auto; background: #FFFFFF; }
-h1 { font-family: serif; color: #242333; margin: 1rem 0; }
-h1.title { color: #242333 }
-h4.credits { color: #01B0D3; font-size: 11px; padding-left: 5px; padding-right: 5px;}
-h2 { color: #01B0D3; font-size: 13px; padding-left: 5px; padding-right: 5px;}
+:root {
+  --thebg: #FFFFFF;
+  --maindark: #192F01;
+  --mainpale: #DED369;
+  --altdark: #E0475B;
+  --altpale: #F8EFEA;
+}
+
+html { font-family: sans-serif; background: var(--thebg); padding: 1rem; }
+body { max-width: 960px; margin: 0 auto; background: var(--thebg); }
+h1 { font-family: serif; color: var(--maindark); margin: 1rem 0; }
+h1.title { color: var(--maindark) }
+h4.credits { color: var(--maindark); font-size: 11px; padding-left: 5px; padding-right: 5px;}
+h2 { color: var(--maindark); font-size: 13px; padding-left: 5px; padding-right: 5px;}
 img.logo {padding-left: 5px; padding-right: 5px;}
-th {background: #D8DFEE; color: #01B0D3;  }
-td {background: #F0F0FF; color: #242333; }
+th {background: var(--altdark); color: var(--altpale);  }
+td {background: var(--altpale); color: var(--altdark); }
+nav { background:  var(--mainpale); color: var(--maindark);   display: flex; align-items: center; padding: 0 0.5rem; }
+
+
+
 td.empty {background: lightgrey; color: darkgrey; }
-td.notes {font-size: 10px; color: #fefbd8; }
+td.notes {font-size: 10px; color: #7D8E95; }
+td.NE {background:white; color: black;text-align: center;}
+td.DD {background:grey; color: black;text-align: center;}
+td.LC {background:darkgreen; color: white; text-align: center;}
+td.NT {background:green; color: white; text-align: center;}
+td.VU {background:yellow; color: black;text-align: center;}
+td.EN {background:orange; color: black; text-align: center;}
+td.CR {background:red; color: white;text-align: center;}
+td.CO {background:black; color: white; text-align: center;}
 a { color: #242333; }
 hr { border: none; border-top: 1px solid #242333; }
-nav { background:  #D8DFEE; color: #242333;   display: flex; align-items: center; padding: 0 0.5rem; }
 nav h1 { flex: auto; margin: 0; }
 nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
 nav ul  { display: flex; list-style: none; margin: 0; padding: 0; }
@@ -61,4 +80,16 @@ div.tabs {display: none;}
   position: absolute;
   bottom: 8px;
   left: 16px;
+}
+
+
+/* flag icons */
+.flagicon {
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  position: relative;
+  display: inline-block;
+  width: 1.33333333em;
+  line-height: 1em;
 }

@@ -24,12 +24,16 @@
       <td>
         <a href="{{ url_for('assessments.info',id=item) }}">{{ info[item]['name'] }}</a>
         </td>
-      <td>{{ info[item]['assessment_protocol_code'] }}
+      <td class='notes'>{{ info[item]['assessment_protocol_code'] }}
       {{ info[item]['risk_category_code'] }}</td>
-      <td>{{ info[item]['ref_code'] }}</td>
+      <td class='notes'>{{ info[item]['ref_code'] }}</td>
 
       {% for key in ('NE','DD','LC','NT','VU','EN','CR','CO','total') %}
-          <td>{{info[item][key]}}</td>
+        {% if key not in info[item].keys() %}
+          <td class='empty'></td>
+        {% else %}
+          <td class='{{ key }}'>{{info[item][key]}}</td>
+        {% endif %}
       {% endfor %}
     </tr>
   {% endfor %}

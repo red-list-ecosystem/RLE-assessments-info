@@ -1,0 +1,24 @@
+
+<p>This assessment has following units:</p>
+<table>
+{% for item in units %}
+  <tr>
+    <td>{{item['eco_name']}}</td>
+    {% if item['countries']==None %}
+    <td class='empty'>No info available</td>
+    {% else %}
+      <td>
+        {% for country in item['countries'] %}
+          <span class='flagicon' style='background-image: url("/static/flags/4x3/{{country|lower}}.svg");'>&nbsp;</span>
+        {% endfor %}
+      </td>
+    {% endif %}
+    <td>{{item['yr']}}</td>
+    {% if item['cat']==None %}
+    <td class='empty'>No info available</td>
+      {% else %}
+    <td class='{{item['cat']}} '>{{item['cat']}}</td>
+    {% endif %}
+  </tr>
+{% endfor %}
+</table>

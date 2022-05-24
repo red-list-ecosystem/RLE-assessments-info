@@ -28,7 +28,8 @@ def country_list(protocol):
         FROM a
         LEFT JOIN b
         USING (iso2)
-        GROUP BY iso2 ORDER BY nasm DESC ,neco DESC;"""
+        GROUP BY iso2
+        ORDER BY neco DESC ,nasm DESC;"""
     else:
         qry="""
         WITH A AS (SELECT unnest(countries) AS iso2,eco_id FROM rle.assessment_units),

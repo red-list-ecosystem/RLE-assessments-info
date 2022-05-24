@@ -5,7 +5,7 @@ venv/
 
 *.pyc
 
-
+flags/
 .pytest_cache/
 .coverage
 htmlcov/

@@ -1,0 +1,21 @@
+<h2>Approximate extent</h2>
+{% if info['area_km2'] == None %}
+  <p>There is no information about the spatial extent of the assessment in the database.</p>
+{% else %}
+  <p>The assessment units cover an approximate extent of {{ info['area_km2'] }} km<sup>2</sup></p>
+{% endif %}
+
+<h2>Countries</h2>
+{% if info['countries'] == None %}
+  <p>There is no information about countries.</p>
+{% elif  info['countries']|length==1%}
+  <p>All assessment units have been assigned to one country or territory: {{info['countries'][0]}}.</p>
+
+{% else %}
+  <p>The assessment units have been assigned to {{info['countries']|length}} countries or territories.</p>
+  {% for country in info['countries']%}
+  <span>{{country}}</span>
+  {% endfor %}
+{% endif %}
+<h2>Spatial data</h2>
+<p>Spatial data is not included in this entry</p>

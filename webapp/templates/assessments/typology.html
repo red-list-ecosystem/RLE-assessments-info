@@ -1,0 +1,11 @@
+<h2>IUCN Global Ecosystem Typology</h2>
+{% if info['extent_layer'] == None %}
+  <p>There is no information about the spatial extent of the assessment in the database.</p>
+{% else %}
+  <p>This assessment is included in {{ info['extent_layer'] }} extent layer.</p>
+{% endif %}
+{% if info['included_ecosystems'] == None %}
+  <p>There is no information about the spatial extent of the assessment in the database.</p>
+{% else %}
+  <p>This assessment includes {{ info['included_ecosystems'] }}.</p>
+{% endif %}

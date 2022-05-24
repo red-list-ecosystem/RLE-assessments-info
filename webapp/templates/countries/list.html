@@ -12,7 +12,12 @@
         <tr><th colspan='2'>Country</th><th>References</th><th>Assessment units</th></tr>
     {% for item in info %}
         <tr>
-          <td><a href="{{ url_for( 'countries.info', iso2=item['code']) }}">{{ item['code'] }}</a></td>
+
+          <td>
+            <a href="{{ url_for( 'countries.info', iso2=item['code']) }}">
+            <img src="/static/flags/4x3/{{ item['code']|lower }}.svg" alt="{{ item['code'] }}" class='flagicon'>
+              </a>
+          </td>
           <td>{{ item['country'] }}</td>
           <td>{{ item['assessments'] }}</td>
           <td>{{ item['units'] }}</td>
