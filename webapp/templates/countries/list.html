@@ -9,16 +9,27 @@
 
     <p>List of assessments and assessment units per country</p>
     <table>
-        <tr><th colspan='2'>Country</th><th>References</th><th>Assessment units</th></tr>
+        <tr><th>Country</th><th>References</th><th>Assessment units</th></tr>
     {% for item in info %}
         <tr>
 
-          <td>
+          <!-- <td>
+            <span>
             <a href="{{ url_for( 'countries.info', iso2=item['code']) }}">
-            <img src="/static/flags/4x3/{{ item['code']|lower }}.svg" alt="{{ item['code'] }}" class='flagicon'>
+            <img src="{{ url_for( 'static', filename='flags/4x3/'+item['code']|lower+'.svg') }}" alt="{{ item['code'] }}" class='flagicon'></img>
               </a>
-          </td>
-          <td>{{ item['country'] }}</td>
+              </span>
+          </td> -->
+
+          <td>
+            <span>
+            <img src="{{ url_for( 'static', filename='flags/4x3/'+item['code']|lower+'.svg') }}" alt="{{ item['code'] }}" class='flagicon' width=20></img>
+              </span>
+              <a href="{{ url_for( 'countries.info', iso2=item['code']) }}">{{ item['country'] }}    </a>
+              </td>
+
+            <!--<td><a href="{{ url_for( 'countries.info', iso2=item['code']) }}">{{ item['country'] }}</a></td>-->
+
           <td>{{ item['assessments'] }}</td>
           <td>{{ item['units'] }}</td>
         </tr>

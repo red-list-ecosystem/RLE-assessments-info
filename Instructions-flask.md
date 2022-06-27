@@ -38,6 +38,7 @@ pip freeze > requirements.txt
 ### Test the app
 
 ```sh
+conda activate flsk
 cd ~/proyectos/IUCN-RLE/RLE-assessments-info
 export FLASK_APP=webapp
 export FLASK_ENV=development
