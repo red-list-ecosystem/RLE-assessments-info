@@ -14,7 +14,16 @@
         <tr>
           <td>{{ item['biome_code'] }}</td>
           <td>{{ item['name'] }}</td>
-          <td>{{ item['neco'] }}</td>
+          {% if item['neco']>0 %}
+            <td>
+              <a href="{{url_for('typology.info', efg=item['code'])}}">
+              {{ item['neco'] }}
+            </a>
+          </td>
+            {% else %}
+            <td class='missing'>0</td>
+
+            {% endif %}
         </tr>
     {% endfor %}
     </table>

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>List of assessments for Ecosystem Functional Group ''{% block title %}{{ efg_code }}{% endblock %}''</h1>
+{% endblock %}
+
+{% block content %}
+<table>
+  <tr>
+    <th >Assessment unit (ecosystem id)</th>
+    <th >Protocol</th>
+    <th >Risk category</th>
+  </tr>
+  {% set ns = namespace(asm_id = 'other') %}
+
+
+    {% for info in results %}
+      {% if info['asm_id'] != ns.asm_id %}
+      <tr>
+        <th>Assessment {{asm_id}}</th>
+        <td colspan=2>{{info['name']}} (<a href="{{url_for('assessments.info',id=info['asm_id'])}}">{{info['asm_id']}}</a>)</td>
+      </tr>
+      {% endif %}
+
+        <tr>
+          <td>{{info['eco_name']}} ({{info['eco_id']}})</td>
+          <td>{{info['assessment_protocol_code']}} ({{info['risk_category_code']}})</td>
+          <td class={{info['overall_risk_category']}}>{{info['overall_risk_category']}}</td>
+
+        </tr>
+        {% set ns.asm_id = info['asm_id'] %}
+
+    {% endfor %}
+
+
+</table>
+{% endblock %}

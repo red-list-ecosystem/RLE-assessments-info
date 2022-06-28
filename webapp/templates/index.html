@@ -10,7 +10,11 @@
 
 <div>
   <ul>
-    <li> Assessments by country</li>
+    <li>All Assessments</li>
+    <ul>
+      <li><a href="{{ url_for('references.ref_list') }}">List of references</a></li>
+    </ul>
+    <li>Assessments by country</li>
     <ul>
       <li><a href="{{ url_for('countries.country_list') }}">List of countries</a></li>
     </ul>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}
+    List of references
+    {% endblock %}</h1>
+{% endblock %}
+{% block content %}
+
+    <p>List of assessments per reference</p>
+    <table>
+        <tr>
+          <th width='50'>Assessment</th>
+          <th width='50'>Reference</th>
+          <th colspan=3>Information</th></tr>
+    {% for item in info %}
+        <tr>
+          <td>{{ item['name'] }}
+            <a href="{{ url_for('assessments.info',id=item['asm_id']) }}">({{ item['asm_id'] }})</a></td>
+
+          {% if item['ref_cite'] == None %}
+            <td>{{ item['ref_code'] }}</td>
+          {% else %}
+            <td class='notes'> {{ item['ref_cite'] }}</td>
+          {% endif %}
+
+          <td>{{ item['assessment_protocol_code'] }}</td>
+          <td>{{ item['risk_category_code'] }}</td>
+          <td>{{ item['n_units'] }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

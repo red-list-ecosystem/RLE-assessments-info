@@ -58,6 +58,8 @@ def create_app(test_config=None):
 
     from . import countries
     app.register_blueprint(countries.bp)
+    from . import biblio
+    app.register_blueprint(biblio.bp)
     from . import typology
     app.register_blueprint(typology.bp)
     from . import assessments
